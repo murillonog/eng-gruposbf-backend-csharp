@@ -1,11 +1,17 @@
 ﻿using eng_gruposbf_backend_csharp.Api.Factories;
+using eng_gruposbf_backend_csharp.Borders.Repositories.BacenConverter;
+using eng_gruposbf_backend_csharp.Borders.Repositories.CurrencyExchange;
 using eng_gruposbf_backend_csharp.Borders.Repositories.HealthCheck;
 using eng_gruposbf_backend_csharp.Borders.UseCases.HealthCheck;
+using eng_gruposbf_backend_csharp.Borders.UseCases.ListCoins;
+using eng_gruposbf_backend_csharp.Borders.UseCases.PriceConverter;
 using eng_gruposbf_backend_csharp.Repositories.Repositories;
 using eng_gruposbf_backend_csharp.Shared;
 using eng_gruposbf_backend_csharp.Shared.Extensions;
 using eng_gruposbf_backend_csharp.Shared.Settings;
 using eng_gruposbf_backend_csharp.UseCases.HealthCheck;
+using eng_gruposbf_backend_csharp.UseCases.ListCoins;
+using eng_gruposbf_backend_csharp.UseCases.PriceConverter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -42,6 +48,8 @@ namespace eng_gruposbf_backend_csharp.Api.Extensions
             services.AddHttpClientFactories();
             services.AddSwagger();
             services.AddConfigurationBinding();
+            services.AddMvc();
+            services.AddControllers();
         }
 
         private static void AddApi(this IServiceCollection services)
@@ -54,11 +62,15 @@ namespace eng_gruposbf_backend_csharp.Api.Extensions
         private static void AddUseCases(this IServiceCollection services)
         {
             services.AddScoped<IHealthCheckUseCase, HealthCheckUseCase>();
+            services.AddScoped<IListCoinsUseCase, ListCoinsUseCase>();
+            services.AddScoped<IPriceConverterUseCase, PriceConverterUseCase>();
         }
 
         private static void AddRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IHealthCheckRepository, HealthCheckRepository>();            
+            services.AddScoped<IHealthCheckRepository, HealthCheckRepository>();
+            services.AddScoped<IBacenConverterRepository, BacenConverterRepository>();
+            services.AddScoped<ICurrencyExchangeRepository, CurrencyExchangeRepository>();            
         }
 
         private static void AddHttpClientFactories(this IServiceCollection services)

@@ -37,14 +37,12 @@ namespace eng_gruposbf_backend_csharp.UseCases.HealthCheck
                 });
 
                 var activities = await Task.WhenAll(tasks);
-                response.Ok(new HealthCheckResponse(activities));
+                return response.Ok(new HealthCheckResponse(activities));
             }
             catch (Exception exception)
             {
-                response.InternalServerError(exception);
+                return response.InternalServerError(exception);
             }
-
-            return response;
         }
     }
 }
