@@ -5,4 +5,8 @@
     <RootNamespace>eng_gruposbf_backend_csharp.Repositories</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eng-gruposbf-backend-csharp.Borders\eng-gruposbf-backend-csharp.Borders.csproj" />
+  </ItemGroup>
+
 </Project>
