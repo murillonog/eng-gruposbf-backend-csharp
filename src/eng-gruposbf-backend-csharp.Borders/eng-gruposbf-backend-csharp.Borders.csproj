@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>eng_gruposbf_backend_csharp.Borders</RootNamespace>
+  </PropertyGroup>
+
+</Project>
