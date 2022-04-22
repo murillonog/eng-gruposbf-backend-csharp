@@ -8,8 +8,13 @@ using System.Threading.Tasks;
 namespace eng_gruposbf_backend_csharp.Api.Controllers
 {
     [Route("api/healthcheck")]
+    [Produces("application/json")]
     public class HealthCheckController : ControllerBase
     {
+        /// <summary>
+        /// Checks all connections we make.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(HealthCheckResponse))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(HealthCheckResponse))]

@@ -20,6 +20,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Reflection;
 
 namespace eng_gruposbf_backend_csharp.Api.Extensions
 {
@@ -117,30 +119,11 @@ namespace eng_gruposbf_backend_csharp.Api.Extensions
                 {
                     Title = Constants.SwaggerOpenApiInfoTitle,
                     Description = Constants.SwaggerOpenApiInfoDescription
-                });
+                });                
 
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Copie 'Bearer ' + token'",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey
-                });
-
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] { }
-                    }
-                });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
             });
 
         }

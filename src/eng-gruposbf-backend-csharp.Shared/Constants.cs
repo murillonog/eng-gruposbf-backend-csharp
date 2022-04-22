@@ -3,8 +3,8 @@
     public static class Constants
     {
         public const string SwaggerApiVersion = "v1";
-        public const string SwaggerOpenApiInfoTitle = "Gateway";
-        public const string SwaggerOpenApiInfoDescription = "Api Gateway para integração de apis";
+        public const string SwaggerOpenApiInfoTitle = "Price Converter API";
+        public const string SwaggerOpenApiInfoDescription = "API for converting prices in different currencies";
         public const string SwaggerUiEndpoingUrl = "/" + SwaggerApiEndpoint + "/v1/swagger.json";
         public const string SwaggerRouteTemplate = SwaggerApiEndpoint + "/{documentName}/swagger.json";
         public const string SwaggerApiEndpoint = "api-docs";
