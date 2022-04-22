@@ -9,6 +9,11 @@ namespace eng_gruposbf_backend_csharp.Borders.Extensions
     {
         public static string TodayIsUtil(this DateTime date)
         {
+            if (date.Hour >= 0 && date.Hour < 11)
+            {
+                date = date.AddDays(-1);
+            }
+
             if (new Holidays().GetHolidaysByCurrentYear(date.Year).Any(f => f == date.Date))
             {
                 date = date.AddDays(-1);
@@ -22,15 +27,10 @@ namespace eng_gruposbf_backend_csharp.Borders.Extensions
             {
                 return date.AddDays(-2).ToString("MM-dd-yyyy");
             }
-            else if (date.Hour >= 0 && date.Hour < 11)
-            {
-                return date.AddDays(-1).ToString("MM-dd-yyyy");
-            }
             else
             {
                 return date.ToString("MM-dd-yyyy");
             }
-
         }
 
         public static decimal GetLastValue(this BacenQuotation bacenQuotation)
